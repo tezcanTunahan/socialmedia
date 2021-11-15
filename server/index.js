@@ -3,17 +3,32 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
-
-dotenv.config();
-const app = express();
+import usersRoute from "./routes/users.js";
+import authRoute from "./routes/auth.js";
 
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL = process.env.MONGO_URL;
+const app = express();
 
-mongoose.connect(CONNECTION_URL, () => {
-  console.log("connectod to mongodb");
+dotenv.config();
+
+//Middleware
+app.use(express.json());
+app.use(helmet());
+app.use(morgan("common"));
+
+app.use("/api/users", usersRoute);
+app.use("/api/auth", authRoute);
+
+app.get("/", (req, res) => {
+  res.send("hello");
+});
+app.get("/users", (req, res) => {
+  res.send("users");
 });
 
+mongoose.connect(process.env.MONGO_URL, () => {
+  console.log("connectod to mongodb");
+});
 app.listen(PORT, () => {
   console.log(`backend server running on server : ${PORT}`);
 });
