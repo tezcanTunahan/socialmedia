@@ -19,16 +19,14 @@ app.use(morgan("common"));
 app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
 
-app.get("/", (req, res) => {
-  res.send("hello");
-});
-app.get("/users", (req, res) => {
-  res.send("users");
-});
-
-mongoose.connect(process.env.MONGO_URL, () => {
-  console.log("connectod to mongodb");
-});
-app.listen(PORT, () => {
-  console.log(`backend server running on server : ${PORT}`);
-});
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    )
+  )
+  .catch((error) => console.log(`${error} did not connect`));
