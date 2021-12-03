@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import usersRoute from "./routes/users.js";
 import authRoute from "./routes/auth.js";
+import postRoute from "./routes/post.js";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -18,6 +19,7 @@ app.use(morgan("common"));
 
 app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/posts", postRoute);
 
 mongoose
   .connect(process.env.MONGO_URL, {
