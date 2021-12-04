@@ -1,11 +1,8 @@
 import "./App.css";
+import Home from "./pages/home/Homegit";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>app</h1>
-    </div>
-  );
+  return <Home />;
 }
 
 export default App;
