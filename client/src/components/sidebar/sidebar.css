@@ -3,6 +3,8 @@
   height: 92vh;
   background-color: rgba(221, 215, 215, 0.402);
   overflow-y: scroll;
+  position: sticky;
+  top: 8vh;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -37,16 +39,4 @@
 }
 .sidebarFriendList {
   list-style: none;
-}
-.sidebarfriend {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-.sidebarFriendImg {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
 }

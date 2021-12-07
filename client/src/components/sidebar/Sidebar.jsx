@@ -1,4 +1,5 @@
 import "./sidebar.css";
+import CloseFriend from "../closeFriend/CloseFriend";
 
 export default function Sidebar() {
   return (
@@ -36,134 +37,11 @@ export default function Sidebar() {
         <button className="sidebarButton">show more</button>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>{" "}
-          <li className="sidebarfriend">
-            <img
-              className="sidebarFriendImg"
-              src="https://tr.web.img4.acsta.net/c_310_420/pictures/19/10/02/21/34/5281471.jpg"
-              alt=""
-            />
-            <span className="sidebarFriendName">spiderman</span>
-          </li>
+          <CloseFriend />
+          <CloseFriend />
+          <CloseFriend />
+          <CloseFriend />
+          <CloseFriend />
         </ul>
       </div>
     </div>
