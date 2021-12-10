@@ -1,6 +1,20 @@
 import "./post.css";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import { format } from "timeago.js";
 
-export default function Post() {
+export default function Post({ post }) {
+  const [user, setUser] = useState({});
+  const [like, setLike] = useState(post.likes.length);
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [post.userId]);
+
   return (
     <div className="post">
       <div className="postWrapper">
@@ -11,15 +25,15 @@ export default function Post() {
               src="https://www.log.com.tr/wp-content/uploads/2019/06/thor.jpg"
               alt=""
             />
-            <span className="postUsername">thor son of odin</span>
-            <span className="postDate">5 minuts ago</span>
+            <span className="postUsername">{user.userName}</span>
+            <span className="postDate">{format(post.createdAt)} </span>
           </div>
           <div className="postTopRight">
-            <i class="fas fa-ellipsis-v"></i>
+            <i className="fas fa-ellipsis-v"></i>
           </div>
         </div>
         <div className="postCenter">
-          <span className="postText">Where is my hammor</span>
+          <span className="postText">{post.desc}</span>
           <img
             className="postImg"
             src="https://qph.fs.quoracdn.net/main-qimg-ecedd76e216d35343b682e27d6e76840-c"
@@ -28,9 +42,9 @@ export default function Post() {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <i class="far fa-thumbs-up"></i>
-            <i class="fas fa-heart"></i>
-            <span className="postLikeCounter">32 people like it</span>
+            <i className="far fa-thumbs-up"></i>
+            <i className="fas fa-heart"></i>
+            <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">9 comments</span>

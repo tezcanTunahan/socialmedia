@@ -1,10 +1,13 @@
 import "./topbar.css";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="left">
-        <div className="logo">SocialT</div>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <div className="logo">SocialT</div>
+        </Link>
       </div>
       <div className="middle">
         <form action="">

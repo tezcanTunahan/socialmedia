@@ -20,19 +20,19 @@ export default function Share() {
         <div className="shareBottom">
           <div className="shareOptions">
             <div className="shareOption">
-              <i class="fas fa-photo-video shareIcon"></i>
+              <i className="fas fa-photo-video shareIcon"></i>
               <span className="shareOptionText">Photo or video</span>
             </div>
             <div className="shareOption">
-              <i class="fas fa-tags shareIcon"></i>
+              <i className="fas fa-tags shareIcon"></i>
               <span className="shareOptionText">Tag</span>
-            </div>{" "}
+            </div>
             <div className="shareOption">
-              <i class="fas fa-map-marker-alt shareIcon"></i>
+              <i className="fas fa-map-marker-alt shareIcon"></i>
               <span className="shareOptionText">Location</span>
-            </div>{" "}
+            </div>
             <div className="shareOption">
-              <i class="fas fa-smile-beam shareIcon"></i>
+              <i className="fas fa-smile-beam shareIcon"></i>
               <span className="shareOptionText">Feelings</span>
             </div>
           </div>

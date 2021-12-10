@@ -7,31 +7,31 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <ul className="sidebarList">
           <li className="sidebarListItem">
-            <i class="fas fa-rss"></i>
+            <i className="fas fa-rss"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="far fa-comment-dots"></i>
+            <i className="far fa-comment-dots"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="far fa-play-circle"></i>
+            <i className="far fa-play-circle"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="fas fa-user-friends"></i>
+            <i className="fas fa-user-friends"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="fas fa-bookmark"></i>
+            <i className="fas fa-bookmark"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="far fa-question-circle"></i>
+            <i className="far fa-question-circle"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="fas fa-briefcase"></i>
+            <i className="fas fa-briefcase"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="fas fa-calendar-alt"></i>
+            <i className="fas fa-calendar-alt"></i>
           </li>
           <li className="sidebarListItem">
-            <i class="fab fa-redhat"></i>
+            <i className="fab fa-redhat"></i>
           </li>
         </ul>
         <button className="sidebarButton">show more</button>
