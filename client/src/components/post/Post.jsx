@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 export default function Post({ post }) {
   const [user, setUser] = useState({});
@@ -20,11 +21,13 @@ export default function Post({ post }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              className="postProfileImg"
-              src="https://www.log.com.tr/wp-content/uploads/2019/06/thor.jpg"
-              alt=""
-            />
+            <Link to={`profile/${user.userName}`}>
+              <img
+                className="postProfileImg"
+                src="https://www.log.com.tr/wp-content/uploads/2019/06/thor.jpg"
+                alt=""
+              />
+            </Link>
             <span className="postUsername">{user.userName}</span>
             <span className="postDate">{format(post.createdAt)} </span>
           </div>

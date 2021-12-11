@@ -6,6 +6,7 @@ import {
   likePost,
   getPost,
   timelinePost,
+  usersPosts,
 } from "../controllers/post.js";
 
 const router = express.Router();
@@ -20,6 +21,8 @@ router.delete("/:id", deletePost);
 router.put("/:id/like", likePost);
 // get post
 router.get("/:id", getPost);
+// get user's all posts
+router.get("/profile/:username", usersPosts);
 // get timeline posts
 router.get("/timeline/:userId", timelinePost);
 
