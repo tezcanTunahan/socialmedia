@@ -43,7 +43,7 @@ export const getUser = async (req, res) => {
   try {
     const user = userId
       ? await User.findById(userId)
-      : await User.findOne({ username: username });
+      : await User.findOne({ userName: username });
     const { password, updatedAt, ...other } = user._doc;
     res.status(200).json(other);
   } catch (error) {

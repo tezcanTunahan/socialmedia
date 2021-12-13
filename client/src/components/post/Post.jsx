@@ -10,7 +10,7 @@ export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users/userId=${post.userId}`);
+      const res = await axios.get(`/users/?userId=${post.userId}`);
       setUser(res.data);
     };
     fetchUser();
