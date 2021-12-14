@@ -6,7 +6,7 @@ const AuthReducer = (state, action) => {
         isFecthing: true,
         error: false,
       };
-    case "LOGIN_SUCCES":
+    case "LOGIN_SUCCESS":
       return {
         user: action.payload,
         isFecthing: false,
