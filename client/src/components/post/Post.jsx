@@ -4,10 +4,19 @@ import axios from "axios";
 import { useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Post({ post }) {
   const [user, setUser] = useState({});
   const [like, setLike] = useState(post.likes.length);
+  const [isLiked, setIsLiked] = useState(false);
+  const { user: currentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    setIsLiked(!post.likes.includes(currentUser._id));
+  }, [currentUser._id, post.likes]);
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users/?userId=${post.userId}`);
@@ -15,6 +24,16 @@ export default function Post({ post }) {
     };
     fetchUser();
   }, [post.userId]);
+
+  const likeHandler = async () => {
+    try {
+      await axios.put(`http://localhost:5000/api/posts/${post._id}/like`, {
+        userId: currentUser._id,
+      });
+    } catch (error) {}
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
 
   return (
     <div className="post">
@@ -46,7 +65,7 @@ export default function Post({ post }) {
         <div className="postBottom">
           <div className="postBottomLeft">
             <i className="far fa-thumbs-up"></i>
-            <i className="fas fa-heart"></i>
+            <i onClick={likeHandler} className="fas fa-heart"></i>
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">

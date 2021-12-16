@@ -8,6 +8,7 @@ import authRoute from "./routes/auth.js";
 import postRoute from "./routes/post.js";
 import cors from "cors";
 import bodyParser from "body-parser";
+import multer from "multer";
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -23,6 +24,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 app.use(cors());
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer(storage);
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  try {
+    return res.status(200).json("file uploaded successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 app.use("/api/users", usersRoute);
 app.use("/api/auth", authRoute);
