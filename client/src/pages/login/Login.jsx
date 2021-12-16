@@ -7,13 +7,15 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Login() {
   const email = useRef();
   const password = useRef();
-  const { user, isfetching, error, dispatch } = useContext(AuthContext);
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
   const handleClick = (e) => {
     e.preventDefault();
-    loginCall({ email, password }, dispatch);
+    loginCall(
+      { email: email.current.value, password: password.current.value },
+      dispatch
+    );
   };
-  console.log(user);
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -29,17 +31,19 @@ export default function Login() {
               type="email"
               className="loginInput"
               placeholder="email"
-              ref={password}
+              ref={email}
               required
             />
             <input
               type="password"
               className="loginInput"
               placeholder="password"
-              ref={email}
+              ref={password}
               required
             />
-            <button className="loginButton">Log ın</button>
+            <button className="loginButton">
+              {isFetching ? "loading" : "log in"}{" "}
+            </button>
             <span className="forgotPassword">forgot password ?</span>
             <button className="loginRegisterButton">Create new Account</button>
           </form>
