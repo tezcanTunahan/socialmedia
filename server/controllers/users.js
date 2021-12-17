@@ -90,3 +90,20 @@ export const unfollowUser = async (req, res) => {
     res.status(403).json("you can't unfollow yourself");
   }
 };
+
+export const getFriends = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => User.findById(friendId))
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, userName } = friend;
+      friendList.push({ _id, userName });
+    });
+    res.status(200).json(friendList);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
