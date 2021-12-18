@@ -2,22 +2,24 @@ import { useEffect, useState } from "react";
 import Online from "../online/Online";
 import "./rightbar.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Rightbar({ user }) {
-  const [friends, setFriends] = useState();
+  const [friends, setFriends] = useState([]);
 
   useEffect(() => {
     const getFriends = async () => {
       try {
         const friendList = await axios.get(
-          `http://localhost:5000/api/users/friends/${user.user._id}`
+          `http://localhost:5000/api/users/friends/${user._id}`
         );
-        setFriends(friendList);
-        console.log(friends);
-      } catch (error) {}
+        setFriends(friendList.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
     getFriends();
-  }, [user._id]);
+  }, [user]);
 
   return (
     <div className="rightbar">
@@ -36,14 +38,13 @@ export default function Rightbar({ user }) {
         /> */}
         <h4 className="rightbarTitle">Online friends</h4>
         <ul className="rightbarFriendList">
-          <Online />
-          <Online />
-          <Online />
-          <Online />
-          <Online />
-          <Online />
-          <Online />
-          <Online />
+          {friends.map((friend) => {
+            return (
+              <Link to={`/profile/${friend.userName}`}>
+                <Online username={friend.userName} key={friend._id} />;
+              </Link>
+            );
+          })}
         </ul>
       </div>
     </div>

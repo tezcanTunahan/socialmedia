@@ -1,6 +1,6 @@
 import "./online.css";
 
-export default function Online() {
+export default function Online({ username }) {
   return (
     <li className="rightbarFriend">
       <div className="rightbarProfileImgContainer">
@@ -11,7 +11,7 @@ export default function Online() {
         />
         <span className="rightbarOnline"></span>
       </div>
-      <span className="rightbarUsername">Dr. Otto Octavius</span>
+      <span className="rightbarUsername">{username}</span>
     </li>
   );
 }
