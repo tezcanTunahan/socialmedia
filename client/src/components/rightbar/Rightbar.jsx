@@ -3,9 +3,12 @@ import Online from "../online/Online";
 import "./rightbar.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Rightbar({ user }) {
   const [friends, setFriends] = useState([]);
+  const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const getFriends = async () => {
@@ -21,8 +24,18 @@ export default function Rightbar({ user }) {
     getFriends();
   }, [user]);
 
+  const followHandler = async () => {
+    try {
+    } catch (error) {}
+  };
+
   return (
     <div className="rightbar">
+      {user.userName !== currentUser.userName && (
+        <button className="rightbarFollowButton" onClick={followHandler}>
+          follow
+        </button>
+      )}
       <div className="rightbarWrapper">
         {/* <div className="birthdayContainer">
           <i className="fas fa-gifts"></i>
