@@ -3,10 +3,12 @@ import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
+  let navigate = useNavigate();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
 
   const handleClick = (e) => {
@@ -15,6 +17,9 @@ export default function Login() {
       { email: email.current.value, password: password.current.value },
       dispatch
     );
+  };
+  const redirectRegister = () => {
+    navigate("/register");
   };
   return (
     <div className="login">
@@ -41,11 +46,16 @@ export default function Login() {
               ref={password}
               required
             />
-            <button className="loginButton">
+            <button className="loginButton" type="submit">
               {isFetching ? "loading" : "log in"}{" "}
             </button>
-            <span className="forgotPassword">forgot password ?</span>
-            <button className="loginRegisterButton">Create new Account</button>
+            <button
+              className="loginRegisterButton"
+              type="button"
+              onClick={redirectRegister}
+            >
+              Create new Account
+            </button>
           </form>
         </div>
       </div>

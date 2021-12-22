@@ -10,6 +10,10 @@ export default function Register() {
   const passwordAgain = useRef();
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate("/login");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
@@ -73,8 +77,9 @@ export default function Register() {
             <button className="loginButton" type="submit">
               Sign up
             </button>
-            <span className="forgotPassword">forgot password ?</span>
-            <button className="loginRegisterButton">Log into account</button>
+            <button className="loginRegisterButton" onClick={handleClick}>
+              Log into account
+            </button>
           </form>
         </div>
       </div>
