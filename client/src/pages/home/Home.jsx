@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 export default function Home() {
   let navigation = useNavigate();
+
   const user = useContext(AuthContext).user;
   useEffect(() => {
     navigation("/");

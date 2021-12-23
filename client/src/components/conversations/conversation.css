@@ -1,0 +1,13 @@
+.conversation {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+.conversation:hover {
+  background-color: rgba(238, 231, 231, 0.415);
+}
+.conversationName {
+  font-weight: 500;
+}

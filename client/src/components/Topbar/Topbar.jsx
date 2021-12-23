@@ -2,9 +2,11 @@ import "./topbar.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+// import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Topbar() {
   const { user } = useContext(AuthContext);
+  // let navigation = useNavigate;
 
   return (
     <nav className="navbar">
@@ -30,7 +32,9 @@ export default function Navbar() {
         <Link to={`/profile/${user.userName}`}>
           <i className="fas fa-user-alt user__button"></i>
         </Link>
-        <i className="fas fa-comments comments__button"></i>
+        <Link to="/messenger">
+          <i className="fas fa-comments comments__button"></i>
+        </Link>
         <i className="fas fa-bell bell__button"></i>
       </div>
     </nav>
