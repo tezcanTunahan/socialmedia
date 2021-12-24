@@ -14,10 +14,38 @@
 .chatBox {
   flex: 5.5;
 }
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+}
+.chatBoxTop {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+.chatBoxBottom {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chatMessageInput {
+  width: 80%;
+  height: 90px;
+  padding: 10px;
+}
+.chatSubmitButton {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(65, 65, 65);
+  color: white;
+  cursor: pointer;
+}
 .chatOnline {
   flex: 3;
 }
-
 .charMenuWrapper,
 .chatBoxWrapper,
 .chatOnlineWrapper {
