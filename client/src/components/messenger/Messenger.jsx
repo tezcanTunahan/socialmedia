@@ -3,8 +3,85 @@ import Topbar from "../../components/topbar/Topbar";
 import Conversation from "../conversations/Conversation";
 import Message from "../message/Message";
 import ChatOnline from "../chatOnline/ChatOnline";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useRef } from "react";
+import { io, Socket } from "socket.io-client";
 
 export default function Messenger() {
+  const [socket, setSocket] = useState(null);
+  const [conversation, setConversation] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const scrollRef = useRef();
+
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    setSocket(io(`ws://localhost:8900`));
+  }, []);
+
+  useEffect(() => {
+    socket?.on("welcome", (message) => {
+      console.log(message);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    const getConversation = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/conversation/${user._id}`
+        );
+        setConversation(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getConversation();
+  }, [user]);
+
+  useEffect(() => {
+    const getMessages = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/api/message/${currentChat?._id}`
+        );
+        setMessages(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getMessages();
+  }, [currentChat]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const message = {
+      sender: user._id,
+      text: newMessage,
+      conversationId: currentChat._id,
+    };
+    try {
+      const res = await axios.post(
+        `http://localhost:5000/api/message`,
+        message
+      );
+      setMessages([...messages, res.data]);
+      setNewMessage("");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
     <>
       <Topbar />
@@ -17,44 +94,46 @@ export default function Messenger() {
               placeholder="search for friends"
               className="chatMenuInput"
             />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
+            {conversation.map((c) => {
+              return (
+                <div
+                  onClick={() => {
+                    setCurrentChat(c);
+                  }}
+                >
+                  <Conversation conversation={c} currentUser={user} />
+                </div>
+              );
+            })}
           </div>
         </div>
         <div className="chatBox">
           <div className="chatBoxWrapper">
-            <div className="chatBoxTop">
-              <Message />
-              <Message own={true} />
-              <Message />
-              <Message />
-              <Message own={true} />
-              <Message />
-              <Message />
-              <Message own={true} />
-              <Message />
-              <Message />
-              <Message own={true} />
-              <Message />
-              <Message />
-              <Message own={true} />
-              <Message />
-              <Message />
-              <Message own={true} />
-              <Message />
-            </div>
+            {currentChat ? (
+              <div className="chatBoxTop">
+                {messages.map((m) => {
+                  return (
+                    <div ref={scrollRef}>
+                      <Message message={m} own={m.sender === user._id} />;
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <span className="noConversationChat">Open a conservation...</span>
+            )}
             <div className="chatBoxBottom">
               <textarea
                 className="chatMessageInput"
                 placeholder="Write something..."
-                cols="30"
-                rows="10"
+                onChange={(e) => {
+                  setNewMessage(e.target.value);
+                }}
+                value={newMessage}
               ></textarea>
-              <button className="chatSubmitButton">Send</button>
+              <button className="chatSubmitButton" onClick={handleSubmit}>
+                Send
+              </button>
             </div>
           </div>
         </div>
