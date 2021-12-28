@@ -22,3 +22,13 @@ export const getConv = async (req, res) => {
     res.status(500).json(error);
   }
 };
+export const getTwoUserConv = async (req, res) => {
+  try {
+    const conversation = await Conversation.findOne({
+      members: { $all: [req.params.firstUserId, req.params.secondUserId] },
+    });
+    res.status(200).json(conversation);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
