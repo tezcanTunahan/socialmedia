@@ -41,36 +41,21 @@ export default function Post({ post }) {
         <div className="postTop">
           <div className="postTopLeft">
             <Link to={`profile/${user.userName}`}>
-              <img
-                className="postProfileImg"
-                src="https://media-exp1.licdn.com/dms/image/C4E03AQHttr9EWZDbmg/profile-displayphoto-shrink_400_400/0/1634989093304?e=1645056000&v=beta&t=nHTdlWQGaMqOeznYYCvWBomxMGak0VXF-PwGOZ5EU-c"
-                alt=""
-              />
+              <span className="postUsername">{user.userName}</span>
             </Link>
-            <span className="postUsername">{user.userName}</span>
             <span className="postDate">{format(post.createdAt)} </span>
           </div>
-          <div className="postTopRight">
-            <i className="fas fa-ellipsis-v"></i>
-          </div>
+          <div className="postTopRight"></div>
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          {/* <img
-            className="postImg"
-            src="https://qph.fs.quoracdn.net/main-qimg-ecedd76e216d35343b682e27d6e76840-c"
-            alt=""
-          /> */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <i className="far fa-thumbs-up"></i>
             <i onClick={likeHandler} className="fas fa-heart"></i>
             <span className="postLikeCounter">{like} people like it</span>
           </div>
-          <div className="postBottomRight">
-            <span className="postCommentText">9 comments</span>
-          </div>
+          <div className="postBottomRight"></div>
         </div>
       </div>
     </div>

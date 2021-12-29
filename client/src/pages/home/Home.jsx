@@ -2,7 +2,6 @@ import "./home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
-import Rightbar from "../../components/rightbar/Rightbar";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
@@ -21,7 +20,6 @@ export default function Home() {
       <div className="homeContainer">
         <Sidebar />
         <Feed username={user.userName} />
-        <Rightbar user={user} />
       </div>
     </>
   );

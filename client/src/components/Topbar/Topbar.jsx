@@ -27,15 +27,12 @@ export default function Topbar() {
         </form>
       </div>
       <div className="right">
-        <i className="fas fa-home home__button"></i>
-        <i className="fas fa-stream stream__button"></i>
         <Link to={`/profile/${user.userName}`}>
           <i className="fas fa-user-alt user__button"></i>
         </Link>
         <Link to="/messenger">
           <i className="fas fa-comments comments__button"></i>
         </Link>
-        <i className="fas fa-bell bell__button"></i>
       </div>
     </nav>
   );

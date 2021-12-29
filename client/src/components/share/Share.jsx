@@ -27,11 +27,6 @@ export default function Share() {
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img
-            className="shareProfileImg"
-            src="https://images.immediate.co.uk/production/volatile/sites/3/2021/09/evil_doctor_strange_what_if_no_way_home-0d9bd68.jpg?quality=90&resize=620,413"
-            alt=""
-          />
           <input
             placeholder={`What's in your mind ${user.userName}`}
             type="text"
@@ -54,18 +49,6 @@ export default function Share() {
                 style={{ display: "none" }}
               />
             </label>
-            <div className="shareOption">
-              <i className="fas fa-tags shareIcon"></i>
-              <span className="shareOptionText">Tag</span>
-            </div>
-            <div className="shareOption">
-              <i className="fas fa-map-marker-alt shareIcon"></i>
-              <span className="shareOptionText">Location</span>
-            </div>
-            <div className="shareOption">
-              <i className="fas fa-smile-beam shareIcon"></i>
-              <span className="shareOptionText">Feelings</span>
-            </div>
           </div>
           <button className="shareButton" type="submit">
             Share
