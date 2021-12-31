@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Feed({ username }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
+  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const fetchPost = async () => {
       const res = username
@@ -21,12 +22,15 @@ export default function Feed({ username }) {
       );
     };
     fetchPost();
-  }, [username, user._id]);
+    setRefresh(false);
+  }, [username, user._id, refresh]);
 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        {username === user.userName && <Share />}
+        {(!username || username === user.userName) && (
+          <Share setRefresh={setRefresh} />
+        )}
         {posts.map((post) => {
           return <Post post={post} key={post._id} />;
         })}

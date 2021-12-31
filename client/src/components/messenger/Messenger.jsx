@@ -30,7 +30,7 @@ export default function Messenger() {
         text: data.text,
       });
     });
-  }, []);
+  }, [socket]);
 
   useEffect(() => {
     arrivalMessage &&

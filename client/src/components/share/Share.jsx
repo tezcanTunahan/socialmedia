@@ -1,13 +1,11 @@
 import { useContext, useRef } from "react";
 import "./share.css";
 import { AuthContext } from "../../context/AuthContext";
-import { useState } from "react";
 import axios from "axios";
 
-export default function Share() {
+export default function Share({ setRefresh }) {
   const { user } = useContext(AuthContext);
   const desc = useRef();
-  const [file, setFile] = useState(null);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -17,7 +15,8 @@ export default function Share() {
     };
     try {
       await axios.post("http://localhost:5000/api/posts/", newPost);
-      window.location.reload();
+      setRefresh(true);
+      desc.current.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -36,20 +35,7 @@ export default function Share() {
         </div>
         <hr className="shareHr" />
         <form className="shareBottom" onSubmit={submitHandler}>
-          <div className="shareOptions">
-            <label htmlFor="file" className="shareOption">
-              <i className="fas fa-photo-video shareIcon"></i>
-              <span className="shareOptionText">Photo or video</span>
-              <input
-                type="file"
-                name="file"
-                id="file"
-                accept=".png,.jpeg,"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ display: "none" }}
-              />
-            </label>
-          </div>
+          <div className="shareOptions"></div>
           <button className="shareButton" type="submit">
             Share
           </button>

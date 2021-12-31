@@ -16,7 +16,6 @@ export default function Rightbar({ user }) {
   useEffect(() => {
     setFollowed(currentUser.followings.includes(user?._id));
   }, [currentUser, user]);
-
   useEffect(() => {
     const getFriends = async () => {
       try {
@@ -30,7 +29,6 @@ export default function Rightbar({ user }) {
     };
     getFriends();
   }, [user]);
-
   const followHandler = async () => {
     try {
       if (followed) {
@@ -42,10 +40,15 @@ export default function Rightbar({ user }) {
         );
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
-        await axios.post(`http://localhost:5000/api/conversation/`, {
-          senderId: user._id,
-          receiverId: currentUser._id,
-        });
+        if (
+          !user.followers.includes(currentUser._id) &&
+          !user.followings.includes(currentUser._id)
+        ) {
+          await axios.post(`http://localhost:5000/api/conversation/`, {
+            senderId: user._id,
+            receiverId: currentUser._id,
+          });
+        }
         await axios.put(`http://localhost:5000/api/users/${user._id}/follow`, {
           userId: currentUser._id,
         });

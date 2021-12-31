@@ -8,17 +8,17 @@ import { useState } from "react";
 
 export default function Sidebar() {
   const user = useContext(AuthContext);
-  const [userFriends, setUserFriends] = useState([]);
+  const [userFriends, setUserFriends] = useState([{ userName: "loading" }]);
 
   useEffect(() => {
     const getFriends = async () => {
       const res = await axios.get(
         `http://localhost:5000/api/users/friends/${user.user._id}`
       );
-      setUserFriends(res.data);
+      setUserFriends([...res.data]);
     };
     getFriends();
-  });
+  }, [user]);
 
   return (
     <div className="sidebar">
@@ -33,7 +33,7 @@ export default function Sidebar() {
                 key={friend._id}
                 className="friendLink"
               >
-                <CloseFriend friend={friend} key={friend._id} />
+                <CloseFriend friend={friend} />
               </Link>
             );
           })}
