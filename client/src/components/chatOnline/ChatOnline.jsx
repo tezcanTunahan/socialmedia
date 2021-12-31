@@ -15,7 +15,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
       setFriends(res.data);
     };
     getFriend();
-  }, []);
+  }, [currentId]);
 
   const handleClick = async (user) => {
     try {
@@ -38,6 +38,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
         {onlineFriends.map((o) => {
           return (
             <span
+              key={o._id}
               className="chatOnlineName"
               onClick={() => {
                 handleClick(o);

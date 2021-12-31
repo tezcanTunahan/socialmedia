@@ -2,15 +2,15 @@ import "./home.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Topbar from "../../components/topbar/Topbar";
 import Feed from "../../components/feed/Feed";
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+// import { useContext } from "react";
+// import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 
 export default function Home() {
   let navigation = useNavigate();
 
-  const user = useContext(AuthContext).user;
+  // const user = useContext(AuthContext).user;
   useEffect(() => {
     navigation("/");
   }, []);
@@ -19,7 +19,8 @@ export default function Home() {
       <Topbar />
       <div className="homeContainer">
         <Sidebar />
-        <Feed username={user.userName} />
+        <Feed />
+        {/* <Rightbar user={user} /> */}
       </div>
     </>
   );

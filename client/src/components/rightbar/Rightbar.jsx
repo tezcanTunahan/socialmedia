@@ -42,9 +42,14 @@ export default function Rightbar({ user }) {
         );
         dispatch({ type: "UNFOLLOW", payload: user._id });
       } else {
+        await axios.post(`http://localhost:5000/api/conversation/`, {
+          senderId: user._id,
+          receiverId: currentUser._id,
+        });
         await axios.put(`http://localhost:5000/api/users/${user._id}/follow`, {
           userId: currentUser._id,
         });
+
         dispatch({ type: "FOLLOW", payload: user._id });
       }
     } catch (error) {
@@ -60,18 +65,18 @@ export default function Rightbar({ user }) {
           {followed ? "Unfollow" : "follow"}
         </button>
       )}
-      <div className="rightbarWrapper">
-        <h4 className="rightbarTitle">Online friends</h4>
+      {/* <div className="rightbarWrapper">
+        <h4 className="rightbarTitle">Add friends</h4>
         <ul className="rightbarFriendList">
           {friends.map((friend) => {
             return (
-              <Link to={`/profile/${friend.userName}`}>
-                <Online username={friend.userName} key={friend._id} />
+              <Link to={`/profile/${friend.userName}`} key={friend._id}>
+                <Online username={friend.userName} />
               </Link>
             );
           })}
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 }

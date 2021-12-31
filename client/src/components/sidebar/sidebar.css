@@ -1,5 +1,5 @@
 .sidebar {
-  flex: 3;
+  flex: 2.5;
   height: 92vh;
   background-color: rgba(221, 215, 215, 0.402);
   overflow-y: scroll;
@@ -39,4 +39,8 @@
 }
 .sidebarFriendList {
   list-style: none;
+}
+.friendLink {
+  text-decoration: none;
+  color: black;
 }

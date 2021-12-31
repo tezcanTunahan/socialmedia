@@ -3,6 +3,7 @@ import CloseFriend from "../closeFriend/CloseFriend";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -26,7 +27,15 @@ export default function Sidebar() {
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
           {userFriends.map((friend) => {
-            return <CloseFriend friend={friend} />;
+            return (
+              <Link
+                to={`/profile/${friend.userName}`}
+                key={friend._id}
+                className="friendLink"
+              >
+                <CloseFriend friend={friend} key={friend._id} />
+              </Link>
+            );
           })}
         </ul>
       </div>

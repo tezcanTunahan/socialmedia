@@ -110,12 +110,7 @@ export default function Messenger() {
       <div className="messenger">
         <div className="chatMenu">
           <div className="charMenuWrapper">
-            <input
-              name=""
-              id=""
-              placeholder="search for friends"
-              className="chatMenuInput"
-            />
+            <span>Conversation</span>
             {conversation.map((c) => {
               return (
                 <div
@@ -135,7 +130,7 @@ export default function Messenger() {
               <div className="chatBoxTop">
                 {messages.map((m) => {
                   return (
-                    <div ref={scrollRef}>
+                    <div ref={scrollRef} key={m._id}>
                       <Message message={m} own={m.sender === user._id} />
                     </div>
                   );

@@ -2,11 +2,19 @@ import "./topbar.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 export default function Topbar() {
   const { user } = useContext(AuthContext);
-  // let navigation = useNavigate;
+  const navigation = useNavigate();
+
+  const name = useRef();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    navigation(`/profile/${name.current.value}`);
+  };
 
   return (
     <nav className="navbar">
@@ -16,12 +24,11 @@ export default function Topbar() {
         </Link>
       </div>
       <div className="middle">
-        <form action="">
+        <form onSubmit={submitHandler}>
           <input
+            ref={name}
             className="search__button"
             type="search"
-            name=""
-            id=""
             placeholder="Search"
           />
         </form>
